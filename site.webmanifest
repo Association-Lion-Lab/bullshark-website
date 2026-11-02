@@ -1,0 +1,11 @@
+{
+  "name": "Bullshark",
+  "short_name": "Bullshark",
+  "icons": [
+    { "src": "assets/img/bullshark-logo.png", "sizes": "640x640", "type": "image/png" },
+    { "src": "apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+  ],
+  "theme_color": "#050b16",
+  "background_color": "#050b16",
+  "display": "browser"
+}

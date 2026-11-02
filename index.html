@@ -1,0 +1,581 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title data-i18n="meta.title">Bullshark — Self-hosted voice &amp; chat for gamers</title>
+  <meta name="description" data-i18n-attr="content:meta.description" content="Bullshark is a self-hosted, open-source (MIT) voice and chat platform for gamers. Voice, text, screen sharing, push-to-talk, soundboard, plugins. Your server, your data, zero telemetry.">
+  <meta name="theme-color" content="#050b16">
+  <meta name="color-scheme" content="dark">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Bullshark — Own your voice. Own your data. Own your server.">
+  <meta property="og:description" content="Self-hosted, open-source voice and chat for gamers. No company between you and your data.">
+  <!-- Replace with the absolute URL once the site has a domain (social networks ignore relative og:image). -->
+  <meta property="og:image" content="assets/img/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" href="favicon-48.png" type="image/png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+
+  <link rel="preload" href="assets/fonts/chakra-petch-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <script src="assets/js/boot.js"></script>
+  <script src="assets/js/i18n.js" defer></script>
+  <script src="assets/js/main.js" defer></script>
+</head>
+<body>
+
+<!-- ============ INTRO: the shark opens its jaws ============ -->
+<div class="intro" id="intro">
+  <div class="jaw jaw--upper" aria-hidden="true">
+    <div class="jaw__skin">
+      <div class="intro__brand">
+        <img src="assets/img/bullshark-logo.webp" alt="" width="640" height="640">
+        <span>BULLSHARK</span>
+      </div>
+      <i class="jaw__gill"></i><i class="jaw__gill"></i><i class="jaw__gill"></i>
+      <div class="jaw__eye"></div>
+    </div>
+    <div class="jaw__gum"></div>
+    <div class="jaw__teeth"></div>
+  </div>
+  <div class="jaw jaw--lower" aria-hidden="true">
+    <div class="jaw__skin"></div>
+    <div class="jaw__gum"></div>
+    <div class="jaw__teeth"></div>
+  </div>
+  <button class="intro__skip" type="button" data-i18n="intro.skip">Skip</button>
+</div>
+
+<a class="skip-link" href="#main" data-i18n="nav.skip">Skip to content</a>
+
+<!-- SVG icon sprite -->
+<svg class="sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3M8 21h8"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 9h8M8 12h5"/></symbol>
+  <symbol id="i-screen" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="1"/><path d="M8 20h8M12 16v4M10 8l4 2-4 2z"/></symbol>
+  <symbol id="i-key" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="10" rx="1"/><path d="M6 10h1M10 10h1M14 10h1M18 10h0M7 14h10"/></symbol>
+  <symbol id="i-wave" viewBox="0 0 24 24"><path d="M3 12h2M7 8v8M11 5v14M15 9v6M19 11v2M21 12h0"/></symbol>
+  <symbol id="i-sound" viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="8" rx="1"/><rect x="13" y="3" width="8" height="8" rx="1"/><rect x="3" y="13" width="8" height="8" rx="1"/><rect x="13" y="13" width="8" height="8" rx="1"/><path d="M6 7h2M16 17h2"/></symbol>
+  <symbol id="i-pad" viewBox="0 0 24 24"><path d="M7 8h10a5 5 0 0 1 4.6 6.9l-.9 2a2.4 2.4 0 0 1-4 .5L15 15H9l-1.7 2.4a2.4 2.4 0 0 1-4-.5l-.9-2A5 5 0 0 1 7 8z"/><path d="M8 10.5v3M6.5 12h3M15.5 11h0M17.5 13h0"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></symbol>
+  <symbol id="i-gavel" viewBox="0 0 24 24"><path d="M14 4l6 6M11 7l6 6M12.5 5.5l-4 4 6 6 4-4M10 12l-7 7M3 21h9"/></symbol>
+  <symbol id="i-plug" viewBox="0 0 24 24"><path d="M9 3v4M15 3v4M6 7h12v4a6 6 0 0 1-12 0zM12 17v4"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></symbol>
+  <symbol id="i-eyeoff" viewBox="0 0 24 24"><path d="M3 3l18 18M10.6 6.1A10 10 0 0 1 12 6c5 0 9 6 9 6a17 17 0 0 1-3 3.5M6.3 7.8C4 9.5 3 12 3 12s4 6 9 6a9 9 0 0 0 4-1"/><path d="M9.9 10a3 3 0 0 0 4.1 4.1"/></symbol>
+  <symbol id="i-server" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="7" rx="1"/><rect x="3" y="13" width="18" height="7" rx="1"/><path d="M7 7.5h0M7 16.5h0M11 7.5h6M11 16.5h6"/></symbol>
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v9H3z"/><path d="M9 20v-6h6v6"/></symbol>
+  <symbol id="i-chip" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="1"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4M10 10h4v4h-4z"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="13" height="13" rx="1"/><path d="M16 8V3H3v13h5"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-ext" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v6H4V6h6"/></symbol>
+  <symbol id="i-tray" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="1"/><path d="M3 15h5l1 2h6l1-2h5"/></symbol>
+  <symbol id="i-layers" viewBox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5z"/><path d="M3 13l9 5 9-5"/></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 16V11a6 6 0 0 1 12 0v5l2 2H4z"/><path d="M10 21h4"/></symbol>
+</svg>
+
+<!-- ============ HEADER ============ -->
+<header class="nav" id="top">
+  <div class="nav__inner container">
+    <a class="nav__brand" href="#top" aria-label="Bullshark">
+      <img src="assets/img/bullshark-logo.webp" alt="" width="40" height="40">
+      <span>BULLSHARK</span>
+    </a>
+
+    <nav class="nav__links" id="nav-links" aria-label="Main">
+      <a href="#features" data-i18n="nav.features">Features</a>
+      <a href="#why" data-i18n="nav.why">Why</a>
+      <a href="#install" data-i18n="nav.install">Install</a>
+      <a href="#desktop" data-i18n="nav.desktop">Desktop</a>
+      <a href="#plugins" data-i18n="nav.plugins">Plugins</a>
+      <a href="#roadmap" data-i18n="nav.roadmap">Roadmap</a>
+    </nav>
+
+    <div class="nav__actions">
+      <div class="lang" role="group" aria-label="Language / Langue">
+        <button type="button" data-lang="en" aria-pressed="true">EN</button>
+        <button type="button" data-lang="fr" aria-pressed="false">FR</button>
+      </div>
+      <a class="btn btn--ghost btn--sm nav__cta" href="https://codeberg.org/The_Neckript/bullshark" rel="noopener">
+        <span>Codeberg</span>
+        <svg class="ico ico--sm"><use href="#i-ext"/></svg>
+      </a>
+      <button class="nav__burger" type="button" aria-expanded="false" aria-controls="nav-links" data-i18n-attr="aria-label:nav.menu" aria-label="Menu">
+        <span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="hero__grid" aria-hidden="true"></div>
+    <div class="container hero__inner">
+      <div class="hero__copy">
+        <p class="tag reveal">
+          <span class="tag__dot"></span>
+          <span data-i18n="hero.tag">v0.1 · Beta · MIT · Self-hosted</span>
+        </p>
+        <h1 class="hero__title reveal">
+          <span data-i18n="hero.l1">Own your voice.</span>
+          <span data-i18n="hero.l2">Own your data.</span>
+          <span class="accent" data-i18n="hero.l3">Own your server.</span>
+        </h1>
+        <p class="hero__lead reveal" data-i18n="hero.lead">
+          Bullshark is a self-hosted, open-source voice and chat platform for gamers. You install it. You run it. You own it. Every message, every voice packet, every file stays on your machine.
+        </p>
+        <div class="hero__cta reveal">
+          <a class="btn btn--primary" href="#install">
+            <span data-i18n="hero.cta1">Deploy your server</span>
+            <svg class="ico ico--sm"><use href="#i-arrow"/></svg>
+          </a>
+          <a class="btn btn--ghost" href="#desktop" data-i18n="hero.cta2">Get the desktop app</a>
+        </div>
+      </div>
+
+      <div class="hero__visual reveal" aria-hidden="true">
+        <svg class="hero__arcs" viewBox="0 0 400 400">
+          <path d="M120 40 A170 170 0 0 0 110 360"/>
+          <path d="M150 70 A140 140 0 0 0 140 330"/>
+          <path d="M95 90 A150 150 0 0 0 100 300"/>
+        </svg>
+        <img class="hero__logo" src="assets/img/bullshark-logo.webp" alt="" width="640" height="640">
+        <div class="status">
+          <div class="status__head">
+            <span class="status__led"></span>
+            <span>bullshark@your-server</span>
+          </div>
+          <dl class="status__rows">
+            <div><dt>web + api</dt><dd>4991/tcp</dd></div>
+            <div><dt>webrtc media</dt><dd>40000/tcp+udp</dd></div>
+            <div><dt>data</dt><dd data-i18n="hero.status.data">your disk</dd></div>
+            <div><dt>telemetry</dt><dd class="ok">0</dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+
+    <div class="stack" aria-label="Built on">
+      <div class="stack__track">
+        <span>WebRTC</span><span>Mediasoup</span><span>Bun</span><span>React</span><span>tRPC</span><span>Drizzle ORM</span><span>ShadCN UI</span><span>Electron</span><span>RNNoise</span><span>PWA</span>
+        <span aria-hidden="true">WebRTC</span><span aria-hidden="true">Mediasoup</span><span aria-hidden="true">Bun</span><span aria-hidden="true">React</span><span aria-hidden="true">tRPC</span><span aria-hidden="true">Drizzle ORM</span><span aria-hidden="true">ShadCN UI</span><span aria-hidden="true">Electron</span><span aria-hidden="true">RNNoise</span><span aria-hidden="true">PWA</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SOVEREIGNTY ============ -->
+  <section class="section sov" id="sovereignty">
+    <div class="container">
+      <p class="eyebrow reveal" data-i18n="sov.eyebrow">// 01 — Sovereignty first</p>
+      <h2 class="sov__title reveal" data-i18n="sov.title">There are no <em>“Bullshark servers”</em>.</h2>
+      <div class="sov__body">
+        <p class="reveal" data-i18n="sov.p1">On a hosted platform, your conversations travel through servers you don't control, in a country you don't live in, owned by a company you can't audit. Terms change, servers get shut down overnight, data gets mined.</p>
+        <p class="reveal" data-i18n="sov.p2">With Bullshark, there is no company between you and your data. Your server runs on your hardware, in your country, under your rules. Wherever you host it, that's where your data lives. Full stop.</p>
+      </div>
+
+      <div class="hosts">
+        <article class="host reveal">
+          <svg class="ico"><use href="#i-server"/></svg>
+          <h3 data-i18n="sov.h1.t">A VPS in your city</h3>
+          <p data-i18n="sov.h1.d">Pick the provider and the jurisdiction. HTTPS guides with Caddy + OVH or Hetzner DNS — no Cloudflare dependency.</p>
+        </article>
+        <article class="host reveal">
+          <svg class="ico"><use href="#i-home"/></svg>
+          <h3 data-i18n="sov.h2.t">A box in your living room</h3>
+          <p data-i18n="sov.h2.d">A single native Linux binary or a Docker container. Updates keep your data: migrations run on start.</p>
+        </article>
+        <article class="host reveal">
+          <svg class="ico"><use href="#i-chip"/></svg>
+          <h3 data-i18n="sov.h3.t">A Raspberry Pi under your desk</h3>
+          <p data-i18n="sov.h3.d">ARM64 builds are published alongside x64. Small footprint, your rules.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FEATURES ============ -->
+  <section class="section" id="features">
+    <div class="container">
+      <div class="section__head">
+        <p class="eyebrow reveal" data-i18n="feat.eyebrow">// 02 — Loadout</p>
+        <h2 class="reveal" data-i18n="feat.title">Everything your squad needs. Nothing you didn't ask for.</h2>
+      </div>
+
+      <div class="features">
+        <article class="feature reveal">
+          <svg class="ico"><use href="#i-mic"/></svg>
+          <h3 data-i18n="feat.voice.t">Voice channels</h3>
+          <p data-i18n="feat.voice.d">Low-latency WebRTC through Mediasoup, with a voice channel grid view.</p>
+        </article>
+        <article class="feature reveal">
+          <svg class="ico"><use href="#i-chat"/></svg>
+          <h3 data-i18n="feat.text.t">Text chat</h3>
+          <p data-i18n="feat.text.d">Rich messages, reactions, threads, discussion channels and file sharing.</p>
+        </article>
+        <article class="feature reveal">
+          <svg class="ico"><use href="#i-screen"/></svg>
+          <h3 data-i18n="feat.screen.t">Video &amp; screen sharing</h3>
+          <p data-i18n="feat.screen.d">Built in, with adaptive quality per viewer.</p>
+        </article>
+        <article class="feature reveal">
+          <svg class="ico"><use href="#i-key"/></svg>
+          <h3 data-i18n="feat.ptt.t">Push-to-Talk + VAD</h3>
+          <p data-i18n="feat.ptt.d">Configurable input modes and hotkeys. OS-level global mute via the desktop app.</p>
+        </article>
+        <article class="feature reveal">
+          <svg class="ico"><use href="#i-wave"/></svg>
+          <h3 data-i18n="feat.noise.t">Noise suppression</h3>
+          <p data-i18n="feat.noise.d">RNNoise + noise gate, processed client-side. Your audio never leaves your machine for that.</p>
+        </article>
+        <article class="feature reveal">
+          <svg class="ico"><use href="#i-sound"/></svg>
+          <h3 data-i18n="feat.board.t">Soundboard</h3>
+          <p data-i18n="feat.board.d">Play sounds straight into voice channels.</p>
+        </article>
+        <article class="feature reveal">
+          <svg class="ico"><use href="#i-pad"/></svg>
+          <h3 data-i18n="feat.overlay.t">In-game overlay</h3>
+          <p data-i18n="feat.overlay.d">See who is talking without alt-tabbing out of your game (desktop app).</p>
+        </article>
+        <article class="feature reveal">
+          <svg class="ico"><use href="#i-shield"/></svg>
+          <h3 data-i18n="feat.roles.t">Roles &amp; permissions</h3>
+          <p data-i18n="feat.roles.d">Granular control, per channel and per role.</p>
+        </article>
+        <article class="feature reveal">
+          <svg class="ico"><use href="#i-gavel"/></svg>
+          <h3 data-i18n="feat.mod.t">Moderation</h3>
+          <p data-i18n="feat.mod.d">Timeouts, slow mode, voice server-mute. Owner-only backup export/import.</p>
+        </article>
+        <article class="feature reveal">
+          <svg class="ico"><use href="#i-plug"/></svg>
+          <h3 data-i18n="feat.plugins.t">Plugins</h3>
+          <p data-i18n="feat.plugins.d">Extend your server with a typed SDK: events, slash-commands, messages, voice, UI slots.</p>
+        </article>
+        <article class="feature reveal">
+          <svg class="ico"><use href="#i-phone"/></svg>
+          <h3 data-i18n="feat.mobile.t">Mobile</h3>
+          <p data-i18n="feat.mobile.d">Installable PWA with push notifications.</p>
+        </article>
+        <article class="feature feature--hl reveal">
+          <svg class="ico"><use href="#i-eyeoff"/></svg>
+          <h3 data-i18n="feat.zero.t">Zero telemetry</h3>
+          <p data-i18n="feat.zero.d">No analytics, no tracking, no phoning home.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ COMPARISON ============ -->
+  <section class="section section--alt" id="why">
+    <div class="container">
+      <div class="section__head">
+        <p class="eyebrow reveal" data-i18n="why.eyebrow">// 03 — Why Bullshark</p>
+        <h2 class="reveal" data-i18n="why.title">Pick the server you actually control.</h2>
+      </div>
+
+      <!-- Rows adapted from the project README. Dropped as hard to defend: "Subject to US Cloud Act"
+           (it targets providers, not self-hosted software) and "Can't be shut down externally".
+           TeamSpeak PTT set to ✓ (README says "partial"). Have the maintainer validate before publishing. -->
+      <div class="table-wrap reveal">
+        <table class="cmp">
+          <thead>
+            <tr>
+              <th scope="col"><span class="sr-only" data-i18n="why.col">Criterion</span></th>
+              <th scope="col">Discord</th>
+              <th scope="col">TeamSpeak</th>
+              <th scope="col" class="cmp__us">Bullshark</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row" data-i18n="why.r1">Self-hosted</th>
+              <td class="no">✗</td><td class="yes">✓</td><td class="yes cmp__us">✓</td>
+            </tr>
+            <tr>
+              <th scope="row" data-i18n="why.r2">You choose where data lives</th>
+              <td class="no">✗</td><td class="yes">✓</td><td class="yes cmp__us">✓</td>
+            </tr>
+            <tr>
+              <th scope="row" data-i18n="why.r3">Open source &amp; auditable</th>
+              <td class="no">✗</td><td class="no">✗</td><td class="yes cmp__us">✓ MIT</td>
+            </tr>
+            <tr>
+              <th scope="row" data-i18n="why.r4">Zero telemetry</th>
+              <td class="no">✗</td><td class="no">✗</td><td class="yes cmp__us">✓</td>
+            </tr>
+            <tr>
+              <th scope="row" data-i18n="why.r5">Voice + video + screen share</th>
+              <td class="yes">✓</td><td class="mid" data-i18n="why.partial">partial</td><td class="yes cmp__us">✓</td>
+            </tr>
+            <tr>
+              <th scope="row" data-i18n="why.r6">Push-to-talk &amp; hotkeys</th>
+              <td class="yes">✓</td><td class="yes">✓</td><td class="yes cmp__us">✓</td>
+            </tr>
+            <tr>
+              <th scope="row" data-i18n="why.r7">Free, no paid tier</th>
+              <td class="mid">Nitro</td><td class="mid" data-i18n="why.license">licensed slots</td><td class="yes cmp__us">✓</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note reveal" data-i18n="why.note">Comparison as of 2026, based on public information. Corrections welcome in the issues.</p>
+    </div>
+  </section>
+
+  <!-- ============ INSTALL ============ -->
+  <section class="section" id="install">
+    <div class="container install">
+      <div class="install__copy">
+        <p class="eyebrow reveal" data-i18n="inst.eyebrow">// 04 — Deploy</p>
+        <h2 class="reveal" data-i18n="inst.title">Up in three commands.</h2>
+        <p class="reveal" data-i18n="inst.lead">Grab the native Linux binary (x64 or ARM64) or build the Docker image. Then open <code>http://localhost:4991</code>.</p>
+
+        <ul class="checklist reveal">
+          <li data-i18n="inst.c1">Open <strong>4991/tcp</strong> (web app + API) and <strong>40000 tcp+udp</strong> (WebRTC media).</li>
+          <li data-i18n="inst.c2">Put it behind HTTPS before exposing it — follow the Caddy guide.</li>
+          <li data-i18n="inst.c3">Coming from Sharkord? A migration guide is available.</li>
+        </ul>
+
+        <div class="callout reveal">
+          <strong data-i18n="inst.warn.t">Owner token</strong>
+          <p data-i18n="inst.warn.d">On first launch, Bullshark prints an <strong>owner token</strong> in the console. It is your master key: store it securely. Lost it? <code>./bullshark --new-owner-token</code> issues a new one and revokes the old.</p>
+        </div>
+
+        <a class="link-arrow reveal" href="https://codeberg.org/The_Neckript/bullshark/src/branch/main/docs/getting-started.md" rel="noopener">
+          <span data-i18n="inst.guide">Full getting-started guide</span>
+          <svg class="ico ico--sm"><use href="#i-arrow"/></svg>
+        </a>
+      </div>
+
+      <div class="term reveal">
+        <div class="term__bar">
+          <div class="term__tabs" role="tablist" aria-label="Install method">
+            <button type="button" role="tab" id="tab-bin" aria-selected="true" aria-controls="pane-bin">linux binary</button>
+            <button type="button" role="tab" id="tab-docker" aria-selected="false" aria-controls="pane-docker" tabindex="-1">docker</button>
+          </div>
+          <button class="term__copy" type="button" data-i18n-attr="aria-label:inst.copy" aria-label="Copy commands">
+            <svg class="ico ico--sm"><use href="#i-copy"/></svg>
+          </button>
+        </div>
+        <div class="term__pane" role="tabpanel" id="pane-bin" aria-labelledby="tab-bin">
+<pre><code><span class="c"># x64 — use bullshark-linux-arm64 on ARM (Raspberry Pi…)</span>
+<span class="p">$</span> curl -L https://github.com/Neckript/bullshark/releases/latest/download/bullshark-linux-x64 -o bullshark
+<span class="p">$</span> chmod +x bullshark
+<span class="p">$</span> ./bullshark</code></pre>
+        </div>
+        <div class="term__pane" role="tabpanel" id="pane-docker" aria-labelledby="tab-docker" hidden>
+<pre><code><span class="c"># No pre-built image yet: build it from source.</span>
+<span class="c"># The image packages the server binary (apps/server/build/out),</span>
+<span class="c"># see docs/getting-started.md for the build step.</span>
+<span class="p">$</span> git clone https://codeberg.org/The_Neckript/bullshark.git
+<span class="p">$</span> cd bullshark
+<span class="p">$</span> docker build -t bullshark:local .
+<span class="p">$</span> docker run -d \
+    -p 4991:4991/tcp \
+    -p 40000:40000/tcp \
+    -p 40000:40000/udp \
+    -v ./data:/home/bun/.config/bullshark \
+    --name bullshark \
+    bullshark:local</code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DESKTOP ============ -->
+  <section class="section section--alt" id="desktop">
+    <div class="container split">
+      <div class="split__copy">
+        <p class="eyebrow reveal" data-i18n="desk.eyebrow">// 05 — Bullshark Desktop</p>
+        <h2 class="reveal" data-i18n="desk.title">A native client. No bundled server, no hardcoded URL.</h2>
+        <p class="reveal" data-i18n="desk.lead">Point the app at your own instance and it opens your server full-screen, in its own isolated browser session. Windows, macOS and Linux.</p>
+        <div class="hero__cta reveal">
+          <a class="btn btn--primary" href="https://github.com/Neckript/bullshark-desktop/releases/latest" rel="noopener">
+            <span data-i18n="desk.cta">Download</span>
+            <svg class="ico ico--sm"><use href="#i-arrow"/></svg>
+          </a>
+          <a class="btn btn--ghost" href="https://codeberg.org/The_Neckript/bullshark-desktop" rel="noopener" data-i18n="desk.src">Source code</a>
+        </div>
+        <p class="note reveal" data-i18n="desk.note">v1 builds are not code-signed yet: macOS Gatekeeper and Windows SmartScreen will warn on first launch. Auto-update works on Windows and Linux.</p>
+      </div>
+
+      <ul class="spec reveal">
+        <li>
+          <svg class="ico"><use href="#i-layers"/></svg>
+          <div><h3 data-i18n="desk.f1.t">Multi-server</h3><p data-i18n="desk.f1.d">Each server keeps its own session (separate cookies &amp; storage). Stay signed into several instances at once.</p></div>
+        </li>
+        <li>
+          <svg class="ico"><use href="#i-tray"/></svg>
+          <div><h3 data-i18n="desk.f2.t">Lives in the tray</h3><p data-i18n="desk.f2.d">Switch servers, toggle your mic or notifications without opening the window.</p></div>
+        </li>
+        <li>
+          <svg class="ico"><use href="#i-key"/></svg>
+          <div><h3 data-i18n="desk.f3.t">Global mute hotkey</h3><p data-i18n="desk.f3.d">OS-level and configurable — works while your game has focus.</p></div>
+        </li>
+        <li>
+          <svg class="ico"><use href="#i-bell"/></svg>
+          <div><h3 data-i18n="desk.f4.t">Native notifications</h3><p data-i18n="desk.f4.d">With a do-not-disturb switch one click away.</p></div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ PLUGINS ============ -->
+  <section class="section" id="plugins">
+    <div class="container split split--rev">
+      <div class="split__copy">
+        <p class="eyebrow reveal" data-i18n="plug.eyebrow">// 06 — Plugin SDK</p>
+        <h2 class="reveal" data-i18n="plug.title">Mod your server. Declare what you touch.</h2>
+        <p class="reveal" data-i18n="plug.lead">A plugin is a folder with a <code>manifest.json</code> and a server and/or client entry point. The server builds the plugin context from the capabilities it declares — nothing more.</p>
+        <ul class="chips reveal" aria-label="Capabilities">
+          <li>events</li><li>commands</li><li>actions</li><li>messages</li><li>settings</li><li>data</li><li>voice</li><li>ui</li><li>hooks.onBeforeFileSave</li><li>client.slots</li>
+        </ul>
+        <div class="callout callout--warn reveal">
+          <strong data-i18n="plug.warn.t">Not a sandbox</strong>
+          <p data-i18n="plug.warn.d">Capabilities restrict the SDK surface, not system privileges. Only install plugins you trust — and run the server in Docker.</p>
+        </div>
+        <div class="hero__cta reveal">
+          <a class="btn btn--ghost" href="https://codeberg.org/The_Neckript/bullshark-plugin-sdk" rel="noopener">
+            <span data-i18n="plug.cta">Plugin SDK</span>
+            <svg class="ico ico--sm"><use href="#i-ext"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="code reveal">
+        <div class="code__file">plugins/welcome/manifest.json</div>
+<pre><code>{
+  <span class="k">"id"</span>: <span class="s">"welcome"</span>,
+  <span class="k">"name"</span>: <span class="s">"Welcome"</span>,
+  <span class="k">"author"</span>: <span class="s">"you"</span>,
+  <span class="k">"description"</span>: <span class="s">"Logs who joins"</span>,
+  <span class="k">"version"</span>: <span class="s">"1.0.0"</span>,
+  <span class="k">"sdkVersion"</span>: <span class="n">1</span>,
+  <span class="k">"capabilities"</span>: [<span class="s">"events"</span>]
+}</code></pre>
+        <div class="code__file">plugins/welcome/server/index.js</div>
+<pre><code><span class="kw">const</span> <span class="f">onLoad</span> = (ctx) =&gt; {
+  ctx.events.<span class="f">on</span>(<span class="s">'user:joined'</span>, ({ username }) =&gt; {
+    ctx.<span class="f">log</span>(<span class="s">`${username} joined the server`</span>);
+  });
+};
+
+<span class="kw">export</span> { onLoad };</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ROADMAP ============ -->
+  <section class="section section--alt" id="roadmap">
+    <div class="container">
+      <div class="section__head">
+        <p class="eyebrow reveal" data-i18n="road.eyebrow">// 07 — Roadmap</p>
+        <h2 class="reveal" data-i18n="road.title">Beta today. Stable is the target.</h2>
+        <p class="reveal" data-i18n="road.lead">The core is complete: text, voice, screen sharing, moderation, plugins, PWA and desktop app. Expect rough edges — report them.</p>
+      </div>
+
+      <div class="road">
+        <div class="road__col reveal">
+          <h3><span class="pill pill--done" data-i18n="road.done">Shipped</span></h3>
+          <ul>
+            <li data-i18n="road.d1">Voice stability fixes (voice freeze after 10s)</li>
+            <li data-i18n="road.d2">Push-to-Talk + VAD, client-side noise suppression</li>
+            <li data-i18n="road.d3">Soundboard, voice grid, in-game overlay</li>
+            <li data-i18n="road.d4">Granular roles, threads, mobile PWA</li>
+            <li data-i18n="road.d5">Server backup export/import from the UI</li>
+            <li data-i18n="road.d6">HTTPS guides: Caddy + OVH / Hetzner DNS</li>
+            <li data-i18n="road.d7">v0.1.0 — beta</li>
+          </ul>
+        </div>
+        <div class="road__col reveal">
+          <h3><span class="pill pill--next" data-i18n="road.next">Next</span></h3>
+          <ul>
+            <li data-i18n="road.n1">Clean voice under heavy CPU load (while gaming)</li>
+            <li data-i18n="road.n2">GPU-encoded screen sharing on Windows</li>
+            <li data-i18n="road.n3">Audio redundancy (RED) for lossy Wi-Fi / 4G</li>
+            <li data-i18n="road.n4">Import a Discord server from a template link</li>
+            <li data-i18n="road.n5">Deployment guides: OVH, Hetzner, Raspberry Pi, bare metal</li>
+          </ul>
+        </div>
+        <div class="road__col road__col--goal reveal">
+          <h3><span class="pill pill--goal" data-i18n="road.goal">Target</span></h3>
+          <p class="road__big">v1.0.0</p>
+          <p data-i18n="road.goal.d">Stable release. Later: next-gen Opus packet-loss recovery (DRED) once browsers ship it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA ============ -->
+  <section class="section final">
+    <div class="container final__inner">
+      <img class="final__logo reveal" src="assets/img/bullshark-logo.webp" alt="" width="640" height="640" loading="lazy">
+      <h2 class="reveal" data-i18n="final.title">Your server. Your data. Your sovereignty.</h2>
+      <div class="hero__cta hero__cta--center reveal">
+        <a class="btn btn--primary" href="#install">
+          <span data-i18n="hero.cta1">Deploy your server</span>
+          <svg class="ico ico--sm"><use href="#i-arrow"/></svg>
+        </a>
+        <a class="btn btn--ghost" href="https://codeberg.org/The_Neckript/bullshark/src/branch/main/CONTRIBUTING.md" rel="noopener" data-i18n="final.contrib">Contribute</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__brand">
+      <img src="assets/img/bullshark-logo.webp" alt="" width="48" height="48" loading="lazy">
+      <div>
+        <strong>BULLSHARK</strong>
+        <p data-i18n="foot.fork">A gaming-focused fork of <a href="https://github.com/Sharkord/sharkord" rel="noopener">Sharkord</a>, built by the community, for the community. <a href="https://ko-fi.com/B0B71U3476" rel="noopener">Support the original creator</a>.</p>
+      </div>
+    </div>
+
+    <div class="footer__cols">
+      <div>
+        <h4 data-i18n="foot.repos">Repositories</h4>
+        <ul>
+          <li><a href="https://codeberg.org/The_Neckript/bullshark" rel="noopener">bullshark</a></li>
+          <li><a href="https://codeberg.org/The_Neckript/bullshark-desktop" rel="noopener">bullshark-desktop</a></li>
+          <li><a href="https://codeberg.org/The_Neckript/bullshark-plugin-sdk" rel="noopener">bullshark-plugin-sdk</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 data-i18n="foot.mirrors">GitHub mirrors</h4>
+        <ul>
+          <li><a href="https://github.com/Neckript/bullshark" rel="noopener">Neckript/bullshark</a></li>
+          <li><a href="https://github.com/Neckript/bullshark-desktop" rel="noopener">Neckript/bullshark-desktop</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 data-i18n="foot.res">Resources</h4>
+        <ul>
+          <li><a href="https://codeberg.org/The_Neckript/bullshark/src/branch/main/docs/getting-started.md" rel="noopener" data-i18n="foot.start">Getting started</a></li>
+          <li><a href="https://codeberg.org/The_Neckript/bullshark/src/branch/main/docs/server-administration.md" rel="noopener" data-i18n="foot.admin">Server administration</a></li>
+          <li><a href="https://codeberg.org/The_Neckript/bullshark/src/branch/main/docs/plugins/overview.md" rel="noopener" data-i18n="foot.plugins">Plugins</a></li>
+          <li><a href="https://codeberg.org/The_Neckript/bullshark/issues" rel="noopener" data-i18n="foot.issues">Report an issue</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="container footer__legal">
+    <p data-i18n="foot.license">MIT License · © Sharkord contributors · © Bullshark contributors</p>
+    <p data-i18n="foot.privacy">This site loads nothing from third parties: no cookies, no analytics, self-hosted fonts.</p>
+  </div>
+</footer>
+
+</body>
+</html>
