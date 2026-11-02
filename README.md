@@ -13,9 +13,9 @@ index.html              Page unique, contenu anglais (défaut, sans JS, SEO)
 assets/js/boot.js       Lancé dans <head> : choix de langue + intro avant le premier rendu
 assets/js/i18n.js       Traductions françaises
 assets/js/main.js       i18n, intro, nav, onglets, bouton copier, apparitions au scroll
-assets/css/style.css    Thème complet (sombre, panneaux dépolis)
+assets/css/style.css    Thème calqué sur le thème « bullshark » du client (apps/client/src/index.css)
 assets/img/             Logo, og-image
-assets/fonts/           Chakra Petch, Inter, JetBrains Mono (SIL OFL 1.1)
+assets/fonts/           Geist Sans (comme le client Bullshark), JetBrains Mono — SIL OFL 1.1
 ```
 
 ## Aperçu en local
