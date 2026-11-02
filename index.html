@@ -72,6 +72,22 @@
         <stop offset=".45" stop-color="#000" stop-opacity="0"/>
         <stop offset="1" stop-color="#000" stop-opacity=".85"/>
       </radialGradient>
+      <linearGradient id="ig-tooth-inner-down" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#0a121f"/>
+        <stop offset=".6" stop-color="#26364b"/>
+        <stop offset="1" stop-color="#4a5d74"/>
+      </linearGradient>
+      <linearGradient id="ig-tooth-inner-up" x1="0" y1="1" x2="0" y2="0">
+        <stop offset="0" stop-color="#0a121f"/>
+        <stop offset=".6" stop-color="#26364b"/>
+        <stop offset="1" stop-color="#4a5d74"/>
+      </linearGradient>
+      <!-- Blur filters: stdDeviation is driven per frame by main.js (depth of field + motion blur) -->
+      <filter id="if-front-up" x="-10%" y="-60%" width="120%" height="220%"><feGaussianBlur id="if-front-up-b" stdDeviation="0.8"/></filter>
+      <filter id="if-front-lo" x="-10%" y="-60%" width="120%" height="220%"><feGaussianBlur id="if-front-lo-b" stdDeviation="0.8"/></filter>
+      <filter id="if-inner-up" x="-10%" y="-60%" width="120%" height="220%"><feGaussianBlur id="if-inner-up-b" stdDeviation="7"/></filter>
+      <filter id="if-inner-lo" x="-10%" y="-60%" width="120%" height="220%"><feGaussianBlur id="if-inner-lo-b" stdDeviation="7"/></filter>
+      <filter id="if-gum" x="-10%" y="-60%" width="120%" height="220%"><feGaussianBlur stdDeviation="9"/></filter>
     </defs>
     <g id="intro-cam">
       <rect x="-400" y="-400" width="2400" height="1800" fill="url(#ig-out)"/>
@@ -85,10 +101,14 @@
       <rect id="intro-dark" x="-400" y="-400" width="2400" height="1800" fill="#04080f" opacity="0"/>
       <path id="intro-flesh-lo" fill="url(#ig-flesh-lo)"/>
       <path id="intro-flesh-up" fill="url(#ig-flesh-up)"/>
-      <path id="intro-lip-lo" class="intro__lip"/>
-      <path id="intro-lip-up" class="intro__lip"/>
-      <g id="intro-teeth-lo" fill="url(#ig-tooth-up)"></g>
-      <g id="intro-teeth-up" fill="url(#ig-tooth-down)"></g>
+      <g filter="url(#if-gum)">
+        <path id="intro-lip-lo" class="intro__lip"/>
+        <path id="intro-lip-up" class="intro__lip"/>
+      </g>
+      <g id="intro-teeth-lo" fill="url(#ig-tooth-up)" filter="url(#if-front-lo)"></g>
+      <g id="intro-teeth-up" fill="url(#ig-tooth-down)" filter="url(#if-front-up)"></g>
+      <g id="intro-inner-lo" fill="url(#ig-tooth-inner-up)" filter="url(#if-inner-lo)"></g>
+      <g id="intro-inner-up" fill="url(#ig-tooth-inner-down)" filter="url(#if-inner-up)"></g>
     </g>
     <rect x="-400" y="-400" width="2400" height="1800" fill="url(#ig-vignette)"/>
   </svg>
