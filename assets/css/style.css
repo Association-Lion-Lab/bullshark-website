@@ -351,15 +351,15 @@ strong { color: #fff; font-weight: 600; }
    ========================================================================== */
 .intro { display: none; }
 .intro-on { overflow: hidden; }
-.intro-on .intro { display: block; position: fixed; inset: 0; z-index: 200; background: #000; overflow: hidden; cursor: pointer; }
+.intro-on .intro { display: block; position: fixed; inset: 0; z-index: 200; background: var(--bg); overflow: hidden; cursor: pointer; }
 .intro__scene { position: absolute; inset: 0; width: 100%; height: 100%; }
-.intro__rays { opacity: .07; }
-.intro__lip { fill: none; stroke: #8e2236; stroke-width: 22; stroke-linejoin: round; }
-.intro__fade { position: absolute; inset: 0; background: #000; pointer-events: none; }
+.intro__rays { opacity: .025; }
+.intro__lip { fill: none; stroke: #0f2140; stroke-width: 22; stroke-linejoin: round; }
+.intro__fade { position: absolute; inset: 0; background: var(--bg); pointer-events: none; }
 
 .flash {
   position: fixed; inset: 0; z-index: 250; pointer-events: none; opacity: 0;
-  background: radial-gradient(circle at 50% 45%, #ffffff 0%, #d9fbff 35%, #45e3f2 75%, #1d5fae 100%);
+  background: radial-gradient(circle at 50% 45%, #0f2442 0%, #071226 45%, var(--bg) 100%);
 }
 .flash.is-on { animation: flash .6s cubic-bezier(.2, .7, .3, 1) forwards; }
 @keyframes flash { 0% { opacity: 1; } 15% { opacity: .95; } 100% { opacity: 0; } }
