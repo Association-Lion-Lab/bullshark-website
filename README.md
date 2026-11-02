@@ -4,7 +4,7 @@ Site statique de présentation de [Bullshark](https://codeberg.org/The_Neckript/
 
 - **Aucune étape de build** : HTML/CSS/JS bruts, servis tels quels.
 - **Zéro requête tierce** : polices auto-hébergées, pas de CDN, pas d'analytics, pas de cookies. Une CSP stricte (`default-src 'self'`) l'impose.
-- **Intro animée** : la gueule du requin s'ouvre au chargement (une fois par session, désactivée si `prefers-reduced-motion`).
+- **Intro animée** (canvas) : vue de l'intérieur de la gueule, la caméra nage vers la sortie, les mâchoires se referment, puis le site apparaît. Une fois par session, désactivée si `prefers-reduced-motion`.
 
 ## Structure
 
@@ -13,8 +13,8 @@ index.html              Page unique, contenu anglais (défaut, sans JS, SEO)
 assets/js/boot.js       Lancé dans <head> : choix de langue + intro avant le premier rendu
 assets/js/i18n.js       Traductions françaises
 assets/js/main.js       i18n, intro, nav, onglets, bouton copier, apparitions au scroll
-assets/css/style.css    Thème complet, dont l'animation des mâchoires
-assets/img/             Logo, dents (SVG), og-image
+assets/css/style.css    Thème complet (sombre, panneaux dépolis)
+assets/img/             Logo, og-image
 assets/fonts/           Chakra Petch, Inter, JetBrains Mono (SIL OFL 1.1)
 ```
 
@@ -42,7 +42,7 @@ Paramètres d'URL utiles :
 - **Français** : la même clé dans `assets/js/i18n.js`. Une clé absente retombe sur l'anglais.
 - Les attributs (ex. `content` de la meta description, `aria-label`) passent par `data-i18n-attr="attribut:clé"`.
 
-Tout le contenu factuel vient des README de `bullshark` et `bullshark-desktop` et de `docs/plugins/` (état de novembre 2026). À resynchroniser quand le projet évolue.
+Le contenu vient des README de `bullshark` et `bullshark-desktop` (novembre 2026). Le site reste volontairement court : hero, fonctions, installation, appli desktop et plugins.
 
 ## Déploiement
 
@@ -70,7 +70,6 @@ Fonctionne aussi tel quel sur Codeberg Pages ou GitHub Pages.
 ### À faire avant la mise en ligne
 
 - [ ] Remplacer `og:image` par une **URL absolue** (les réseaux sociaux ignorent les chemins relatifs) et ajouter `og:url` + `<link rel="canonical">`.
-- [ ] Faire valider le tableau comparatif par le mainteneur (voir le commentaire dans `index.html`).
 - [ ] Vérifier la procédure Docker : le `Dockerfile` copie `apps/server/build/out/bullshark-linux-*`, qui n'existe pas dans un clone frais.
 
 ## Licences
