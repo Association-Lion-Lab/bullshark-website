@@ -32,27 +32,71 @@
 </head>
 <body>
 
-<!-- ============ INTRO: the shark opens its jaws ============ -->
+<!-- ============ INTRO: inside the shark's mouth, trying to get out ============
+     Geometry (lips, teeth) is generated and animated by assets/js/main.js. -->
 <div class="intro" id="intro">
-  <div class="jaw jaw--upper" aria-hidden="true">
-    <div class="jaw__skin">
-      <div class="intro__brand">
-        <img src="assets/img/bullshark-logo.webp" alt="" width="640" height="640">
-        <span>BULLSHARK</span>
-      </div>
-      <i class="jaw__gill"></i><i class="jaw__gill"></i><i class="jaw__gill"></i>
-      <div class="jaw__eye"></div>
-    </div>
-    <div class="jaw__gum"></div>
-    <div class="jaw__teeth"></div>
-  </div>
-  <div class="jaw jaw--lower" aria-hidden="true">
-    <div class="jaw__skin"></div>
-    <div class="jaw__gum"></div>
-    <div class="jaw__teeth"></div>
-  </div>
+  <svg class="intro__scene" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+    <defs>
+      <radialGradient id="ig-out" cx="50%" cy="46%" r="60%">
+        <stop offset="0" stop-color="#f2feff"/>
+        <stop offset=".18" stop-color="#9ef3fa"/>
+        <stop offset=".45" stop-color="#2bc4d9"/>
+        <stop offset=".75" stop-color="#1d5fae"/>
+        <stop offset="1" stop-color="#0c1f47"/>
+      </radialGradient>
+      <radialGradient id="ig-glow" cx="50%" cy="50%" r="50%">
+        <stop offset="0" stop-color="#ffffff" stop-opacity=".95"/>
+        <stop offset=".5" stop-color="#c8f9ff" stop-opacity=".35"/>
+        <stop offset="1" stop-color="#c8f9ff" stop-opacity="0"/>
+      </radialGradient>
+      <linearGradient id="ig-flesh-up" gradientUnits="userSpaceOnUse" x1="0" y1="-300" x2="0" y2="520">
+        <stop offset="0" stop-color="#050104"/>
+        <stop offset=".55" stop-color="#2b0710"/>
+        <stop offset="1" stop-color="#6e1628"/>
+      </linearGradient>
+      <linearGradient id="ig-flesh-lo" gradientUnits="userSpaceOnUse" x1="0" y1="1300" x2="0" y2="480">
+        <stop offset="0" stop-color="#050104"/>
+        <stop offset=".55" stop-color="#2b0710"/>
+        <stop offset="1" stop-color="#6e1628"/>
+      </linearGradient>
+      <linearGradient id="ig-tooth-down" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#b9c7cf"/>
+        <stop offset=".4" stop-color="#eef5f8"/>
+        <stop offset="1" stop-color="#ffffff"/>
+      </linearGradient>
+      <linearGradient id="ig-tooth-up" x1="0" y1="1" x2="0" y2="0">
+        <stop offset="0" stop-color="#b9c7cf"/>
+        <stop offset=".4" stop-color="#eef5f8"/>
+        <stop offset="1" stop-color="#ffffff"/>
+      </linearGradient>
+      <radialGradient id="ig-vignette" cx="50%" cy="50%" r="75%">
+        <stop offset=".45" stop-color="#000" stop-opacity="0"/>
+        <stop offset="1" stop-color="#000" stop-opacity=".85"/>
+      </radialGradient>
+    </defs>
+    <g id="intro-cam">
+      <rect x="-400" y="-400" width="2400" height="1800" fill="url(#ig-out)"/>
+      <g class="intro__rays" fill="#ffffff">
+        <polygon points="760,-200 840,-200 1050,1200 900,1200"/>
+        <polygon points="700,-200 740,-200 640,1200 520,1200"/>
+        <polygon points="860,-200 900,-200 1320,1200 1220,1200"/>
+        <polygon points="640,-200 670,-200 300,1200 220,1200"/>
+      </g>
+      <ellipse id="intro-glow" cx="800" cy="500" rx="520" ry="260" fill="url(#ig-glow)"/>
+      <rect id="intro-dark" x="-400" y="-400" width="2400" height="1800" fill="#14030a" opacity="0"/>
+      <path id="intro-flesh-lo" fill="url(#ig-flesh-lo)"/>
+      <path id="intro-flesh-up" fill="url(#ig-flesh-up)"/>
+      <path id="intro-lip-lo" class="intro__lip"/>
+      <path id="intro-lip-up" class="intro__lip"/>
+      <g id="intro-teeth-lo" fill="url(#ig-tooth-up)"></g>
+      <g id="intro-teeth-up" fill="url(#ig-tooth-down)"></g>
+    </g>
+    <rect x="-400" y="-400" width="2400" height="1800" fill="url(#ig-vignette)"/>
+  </svg>
+  <div class="intro__fade"></div>
   <button class="intro__skip" type="button" data-i18n="intro.skip">Skip</button>
 </div>
+<div class="flash" id="flash" aria-hidden="true"></div>
 
 <a class="skip-link" href="#main" data-i18n="nav.skip">Skip to content</a>
 
