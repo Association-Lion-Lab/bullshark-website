@@ -33,85 +33,10 @@
 <body>
 
 <!-- ============ INTRO: inside the shark's mouth, trying to get out ============
-     Geometry (lips, teeth) is generated and animated by assets/js/main.js. -->
+     Drawn on a canvas by assets/js/main.js (geometry, textures, blur). -->
 <div class="intro" id="intro">
-  <svg class="intro__scene" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
-    <defs>
-      <radialGradient id="ig-out" cx="50%" cy="46%" r="60%">
-        <stop offset="0" stop-color="#16325a"/>
-        <stop offset=".35" stop-color="#0c1d3a"/>
-        <stop offset=".75" stop-color="#071226"/>
-        <stop offset="1" stop-color="#04080f"/>
-      </radialGradient>
-      <radialGradient id="ig-glow" cx="50%" cy="50%" r="50%">
-        <stop offset="0" stop-color="#45e3f2" stop-opacity=".22"/>
-        <stop offset=".5" stop-color="#2a78c8" stop-opacity=".08"/>
-        <stop offset="1" stop-color="#2a78c8" stop-opacity="0"/>
-      </radialGradient>
-      <linearGradient id="ig-flesh-up" gradientUnits="userSpaceOnUse" x1="0" y1="-300" x2="0" y2="520">
-        <stop offset="0" stop-color="#020407"/>
-        <stop offset=".55" stop-color="#050b16"/>
-        <stop offset="1" stop-color="#0b1830"/>
-      </linearGradient>
-      <linearGradient id="ig-flesh-lo" gradientUnits="userSpaceOnUse" x1="0" y1="1300" x2="0" y2="480">
-        <stop offset="0" stop-color="#020407"/>
-        <stop offset=".55" stop-color="#050b16"/>
-        <stop offset="1" stop-color="#0b1830"/>
-      </linearGradient>
-      <linearGradient id="ig-tooth-down" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0" stop-color="#1c2a3e"/>
-        <stop offset=".45" stop-color="#5d7088"/>
-        <stop offset="1" stop-color="#8ea2b7"/>
-      </linearGradient>
-      <linearGradient id="ig-tooth-up" x1="0" y1="1" x2="0" y2="0">
-        <stop offset="0" stop-color="#1c2a3e"/>
-        <stop offset=".45" stop-color="#5d7088"/>
-        <stop offset="1" stop-color="#8ea2b7"/>
-      </linearGradient>
-      <radialGradient id="ig-vignette" cx="50%" cy="50%" r="75%">
-        <stop offset=".45" stop-color="#000" stop-opacity="0"/>
-        <stop offset="1" stop-color="#000" stop-opacity=".85"/>
-      </radialGradient>
-      <linearGradient id="ig-tooth-inner-down" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0" stop-color="#0a121f"/>
-        <stop offset=".6" stop-color="#26364b"/>
-        <stop offset="1" stop-color="#4a5d74"/>
-      </linearGradient>
-      <linearGradient id="ig-tooth-inner-up" x1="0" y1="1" x2="0" y2="0">
-        <stop offset="0" stop-color="#0a121f"/>
-        <stop offset=".6" stop-color="#26364b"/>
-        <stop offset="1" stop-color="#4a5d74"/>
-      </linearGradient>
-      <!-- Blur filters: stdDeviation is driven per frame by main.js (depth of field + motion blur) -->
-      <filter id="if-front-up" x="-10%" y="-60%" width="120%" height="220%"><feGaussianBlur id="if-front-up-b" stdDeviation="0.8"/></filter>
-      <filter id="if-front-lo" x="-10%" y="-60%" width="120%" height="220%"><feGaussianBlur id="if-front-lo-b" stdDeviation="0.8"/></filter>
-      <filter id="if-inner-up" x="-10%" y="-60%" width="120%" height="220%"><feGaussianBlur id="if-inner-up-b" stdDeviation="7"/></filter>
-      <filter id="if-inner-lo" x="-10%" y="-60%" width="120%" height="220%"><feGaussianBlur id="if-inner-lo-b" stdDeviation="7"/></filter>
-      <filter id="if-gum" x="-10%" y="-60%" width="120%" height="220%"><feGaussianBlur stdDeviation="9"/></filter>
-    </defs>
-    <g id="intro-cam">
-      <rect x="-400" y="-400" width="2400" height="1800" fill="url(#ig-out)"/>
-      <g class="intro__rays" fill="#ffffff">
-        <polygon points="760,-200 840,-200 1050,1200 900,1200"/>
-        <polygon points="700,-200 740,-200 640,1200 520,1200"/>
-        <polygon points="860,-200 900,-200 1320,1200 1220,1200"/>
-        <polygon points="640,-200 670,-200 300,1200 220,1200"/>
-      </g>
-      <ellipse id="intro-glow" cx="800" cy="500" rx="520" ry="260" fill="url(#ig-glow)"/>
-      <rect id="intro-dark" x="-400" y="-400" width="2400" height="1800" fill="#04080f" opacity="0"/>
-      <path id="intro-flesh-lo" fill="url(#ig-flesh-lo)"/>
-      <path id="intro-flesh-up" fill="url(#ig-flesh-up)"/>
-      <g filter="url(#if-gum)">
-        <path id="intro-lip-lo" class="intro__lip"/>
-        <path id="intro-lip-up" class="intro__lip"/>
-      </g>
-      <g id="intro-teeth-lo" fill="url(#ig-tooth-up)" filter="url(#if-front-lo)"></g>
-      <g id="intro-teeth-up" fill="url(#ig-tooth-down)" filter="url(#if-front-up)"></g>
-      <g id="intro-inner-lo" fill="url(#ig-tooth-inner-up)" filter="url(#if-inner-lo)"></g>
-      <g id="intro-inner-up" fill="url(#ig-tooth-inner-down)" filter="url(#if-inner-up)"></g>
-    </g>
-    <rect x="-400" y="-400" width="2400" height="1800" fill="url(#ig-vignette)"/>
-  </svg>
+  <canvas class="intro__scene" aria-hidden="true"></canvas>
+  <div class="intro__grain"></div>
   <div class="intro__fade"></div>
   <button class="intro__skip" type="button" data-i18n="intro.skip">Skip</button>
 </div>
